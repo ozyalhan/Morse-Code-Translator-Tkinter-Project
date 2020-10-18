@@ -102,7 +102,9 @@ if __name__ == "__main__":
         expression = text1.get()
         converted_expression_object = tsl.MorseTranslator(expression)
         converted_expression = (converted_expression_object.morse_translation_func())
+
         text2.configure(state="normal") #it disable the text for input
+        text2.delete("1.0","end")
         text2.insert(INSERT,converted_expression)
         text2.configure(state="disabled") #it disable the text for input
 
