@@ -62,7 +62,7 @@ morse_dict={
     " ":"/",
 }
 
-#This fuction get input from the user.
+#This fuction get input from the user. This funcion is using only terminal program.
 def get_expression():
     # expression is getting from user with lower characters and rstrip removes white spaces in the end if its necessary.
     get_expression_str = input("").lower().rstrip().lstrip()    #methods added can be deleted

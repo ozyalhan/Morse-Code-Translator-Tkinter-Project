@@ -5,7 +5,6 @@ import translator as tsl
 
 #Tkinter Development
 
-
 class TextWithPlaceHolder(tk.Entry):
     def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
         super().__init__(master)
@@ -41,20 +40,19 @@ if __name__ == "__main__":
 
     #Screen Resolution Info and Application to Program
     pc_resol_width = window.winfo_screenwidth() 
-    #print("pc screen resolution width: "+str(pc_resol_width)) #for debugging only
     pc_resol_height = window.winfo_screenheight()
+    #print("pc screen resolution width: "+str(pc_resol_width)) #for debugging only
     #print("pc screen resolution height: "+str(pc_resol_height)) #for debugging only
 
-    #set the window geometry
-    #window.geometry("1000x500+50+50") #1000px - 500px + 50 (margin to left) + 50 (margin from top)
+    #Set the window geometry
     program_width=pc_resol_width//2 #set program width
     program_height=pc_resol_height//2 #set program height
     window.geometry("{}x{}+{}+{}".format(program_width,program_height,program_width//10,program_height//10)) #optimized with screen resolution
 
     #set the program as resizable
-    #window.resizable(False,False) #width and height values are closed to resize
+    #window.resizable(False,False) #width and height values are closed to resize # it can be uncomment.
 
-
+    #Input label
     label_input = tk.Label(
     window,
     text="Input",
@@ -63,17 +61,17 @@ if __name__ == "__main__":
     pady=5,
     font=("Open Sans","12","bold")
     )
-    #label_input.pack(anchor="ne",fill="x") # fill can be x y both
-    #label_input.place(x=0.8,y=0.3)
     label_input.pack(anchor="ne",fill="x")
 
+    #tex1 - entry place for data.
     placeholder_message = "Type your message here: normal text or Morse code using '.', '-' or '_', separating letters by spaces and words by '/' or '|'." 
     text1 = TextWithPlaceHolder(window, placeholder_message, color="grey") 
     #text1.place(width=program_width,height=program_height/3)
     #text1.pack(anchor="ne",fill="x",expand=1,padx=5,pady=5) #side="left"
     #text1.place(bordermode="outside",height=100,width=100) #side="left"
-    text1.pack(anchor="ne",fill="x") #I have the height problem,
+    text1.pack(anchor="ne",fill="x") #I have the height problem, #BUG make tex1 height more better
 
+    #Output label
     label_output = tk.Label(
     window,
     text="Output",
@@ -82,11 +80,9 @@ if __name__ == "__main__":
     pady=5,
     font=("Open Sans","12","bold")
     )
-    #label_output.pack(anchor="ne",fill="x",expand=1) # fill can be x y both
     label_output.pack(anchor="ne",fill="x")
 
-
-
+    #text2 output of converting data
     text2 = tk.Text(
     window,
     height=5, 
@@ -99,16 +95,43 @@ if __name__ == "__main__":
     text2.pack()
 
     def get_data():
+        #Get the data from expession and declare as expession
         expression = text1.get()
+
+        #Multiple spaces turns to one spaace between words.
+        expression = " ".join(expression.split())
+        
+        #This statement prevents to converting placeholder_message any time.
+        if expression == placeholder_message:
+            expression = ""
+
+        #Converting step
         converted_expression_object = tsl.MorseTranslator(expression)
         converted_expression = (converted_expression_object.morse_translation_func())
 
-        text2.configure(state="normal") #it disable the text for input
-        text2.delete("1.0","end")
-        text2.insert(INSERT,converted_expression)
+        text2.configure(state="normal") #it enables the text for input
+        text2.delete("1.0","end")   # tex2 is clearing for the old converting
+        text2.insert(INSERT,converted_expression) #conterting data is inserting to text2
         text2.configure(state="disabled") #it disable the text for input
 
-        #####hatalar hatalar, bekle
+
+    def exit_func():
+        quit()
+
+   
+    def clear_texts():
+        clear_text1()
+        clear_text2()
+
+    def clear_text1():
+        text1.delete(0,"end")
+        TextWithPlaceHolder().put_placeholder() ###################
+
+        
+    def clear_text2():
+        text2.configure(state="normal") #it disable the text for input
+        text2.delete("1.0","end")
+        text2.configure(state="disabled") #it disable the text for input
 
     #Convert button
     button_convert = Button( 
@@ -116,31 +139,18 @@ if __name__ == "__main__":
         command=get_data
     )
     button_convert.pack(anchor="ne",side="left",padx=5,pady=5)
-
-
-    def exit_func():
-        quit()
+    
+    #Clear button
+    button_exit = Button( 
+        text="Clear",
+        command=clear_texts
+    )
+    button_exit.pack(anchor="ne",side="left",padx=5,pady=5)
 
     #Exit button
     button_exit = Button( 
         text="Exit",
         command=exit_func
-    )
-    button_exit.pack(anchor="ne",side="left",padx=5,pady=5)
-
-
-    def clear_text1():
-        text1.delete(0,"end")
-        TextWithPlaceHolder().put_placeholder() ###################
-
-        text2.configure(state="normal") #it disable the text for input
-        text2.delete("1.0","end")
-        text2.configure(state="disabled") #it disable the text for input
-
-    #Clear button
-    button_exit = Button( 
-        text="Clear",
-        command=clear_text1
     )
     button_exit.pack(anchor="ne",side="left",padx=5,pady=5)
 
