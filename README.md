@@ -17,6 +17,7 @@ What you know about morse code? Here is an example for you.
 
 **ozgur is the best -> --- --.. --. ..- .-. / .. ... / - .... . / -... . ... -**
 
+![Program](https://github.com/ozyalhan/Morse-Code-Translator-Tkinter-Project/blob/master/img/program.jpg)
 
 
 Let's contribute it for fun.
