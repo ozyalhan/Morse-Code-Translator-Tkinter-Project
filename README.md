@@ -7,7 +7,7 @@ As a challenge myseIf, I choose an idea and drive it to develop to high level pr
 
 
 ## Work Details
-![Morse Code Values](http://www.codebug.org.uk/assets/steps/540/image_1.png)
+![Morse Code Values](https://github.com/ozyalhan/Morse-Code-Translator-Tkinter-Project/blob/master/img/morse.jpg)
 
 
 This [link](https://morsecode.world/international/translator.html), gives me idea about creating the desktop app with python for morse code translation.
