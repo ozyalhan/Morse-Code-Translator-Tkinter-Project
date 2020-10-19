@@ -64,7 +64,7 @@ if __name__ == "__main__":
     label_input.pack(anchor="ne",fill="x")
 
     #tex1 - entry place for data.
-    placeholder_message = "Type your message here: normal text or Morse code using '.', '-' or '_', separating letters by spaces and words by '/' or '|'." 
+    placeholder_message = "Type your message here:" 
     text1 = TextWithPlaceHolder(window, placeholder_message, color="grey") 
     #text1.place(width=program_width,height=program_height/3)
     #text1.pack(anchor="ne",fill="x",expand=1,padx=5,pady=5) #side="left"
@@ -122,6 +122,7 @@ if __name__ == "__main__":
     def clear_texts():
         clear_text1()
         clear_text2()
+        TextWithPlaceHolder().put_placeholder()
 
     def clear_text1():
         text1.delete(0,"end")
