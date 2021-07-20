@@ -20,7 +20,9 @@ What you know about morse code? Here is an example for you.
 ![Program](https://github.com/ozyalhan/Morse-Code-Translator-Tkinter-Project/blob/master/img/program.jpg)
 
 
-Let's contribute it for fun.
 
+if you wonder about why you see "Ozgur is the best" in the image, you may like this story -> [“My First Line of Code”: Linux Creator Linus Torvalds](https://bit.ly/3kBbqLv)
+
+Let's contribute it for fun.
 
 Happy Coding! :grinning:
